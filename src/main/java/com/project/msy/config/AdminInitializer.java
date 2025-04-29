@@ -32,7 +32,7 @@ public class AdminInitializer implements CommandLineRunner {
         User admin = new User();
         admin.setUserId(defaultAdminId);
         admin.setName("관리자");
-        admin.setPassword(passwordEncoder.encode("1111")); // 초기 비밀번호는 반드시 나중에 변경해야 함
+        admin.setPassword(passwordEncoder.encode("admin123")); // 초기 비밀번호는 반드시 나중에 변경해야 함
         admin.setEmail(defaultAdminEmail);
         admin.setRole(Role.ADMIN);
         admin.setOauthId("LOCAL_admin");
