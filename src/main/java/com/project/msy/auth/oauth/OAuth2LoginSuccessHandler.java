@@ -56,17 +56,17 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         // ✅ 4-A: JSON 응답 (Postman 테스트용)
         // =========================
 
-        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
-        response.setContentType("application/json");
-        response.getWriter().write("{\"token\":\"" + token + "\"}");
+//        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+//        response.setContentType("application/json");
+//        response.getWriter().write("{\"token\":\"" + token + "\"}");
 
 
         // =========================
         // ✅ 4-B: Redirect 응답 (프론트 연동용)
         // =========================
-        // String frontBaseUrl = "http://localhost:3000/oauth2/success";
-        // String redirectUrl = frontBaseUrl
-        //     + "?token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
-        // response.sendRedirect(redirectUrl);
+         String frontBaseUrl = "http://localhost:3000/login/oauth2/code/" + provider;
+         String redirectUrl = frontBaseUrl
+             + "?token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
+         response.sendRedirect(redirectUrl);
     }
 }

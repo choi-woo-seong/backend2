@@ -31,6 +31,9 @@ public class User {
     @Column(unique = true, nullable = true)
     private String email;
 
+    @Column(nullable = true)
+    private String phone;
+
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -43,6 +46,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Provider provider; // ✅ 소셜 로그인 제공자 (구글 or 카카오)
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = true)
     private String oauthId;
 }
