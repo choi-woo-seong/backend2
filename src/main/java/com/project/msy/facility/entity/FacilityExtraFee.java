@@ -3,6 +3,8 @@ package com.project.msy.facility.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 /**
  * 시설 추가 비용 정보 Entity
  */
@@ -26,5 +28,5 @@ public class FacilityExtraFee {
     private String name;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private Double amount;
+    private BigDecimal amount;
 }

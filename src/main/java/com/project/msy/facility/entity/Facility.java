@@ -1,8 +1,12 @@
 package com.project.msy.facility.entity;
 
+import com.project.msy.facility.entity.Specialization;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 시설 기본 정보 Entity
@@ -60,4 +64,15 @@ public class Facility {
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
+
+    /**
+     * 특화 영역 연관 관계 (다대다)
+     */
+    @ManyToMany
+    @JoinTable(
+            name = "facility_specializations",
+            joinColumns = @JoinColumn(name = "f_id"),
+            inverseJoinColumns = @JoinColumn(name = "s_id")
+    )
+    private Set<Specialization> specializations = new HashSet<>();
 }

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 /**
  * 공지사항 Entity
  */
-@Entity
+@Entity(name = "NoticeEntity")
 @Table(name = "notice")
 @Getter
 @Setter
@@ -25,7 +25,7 @@ public class Notice {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @PrePersist

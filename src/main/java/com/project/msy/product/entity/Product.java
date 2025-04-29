@@ -5,6 +5,7 @@ import com.project.msy.product.entity.ProductOrigin;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +33,10 @@ public class Product {
     private ProductCategory category;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "discount_price", precision = 10, scale = 2)
-    private Double discountPrice;
+    private BigDecimal discountPrice;
 
     @Column(name = "stock_quantity", nullable = false)
     private Integer stockQuantity;
@@ -44,7 +45,7 @@ public class Product {
     private String description;
 
     @Column(name = "shipping_fee", precision = 10, scale = 2)
-    private Double shippingFee;
+    private BigDecimal shippingFee;
 
     @Column(length = 100)
     private String manufacturer;

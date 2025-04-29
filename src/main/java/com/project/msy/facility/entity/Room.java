@@ -3,6 +3,7 @@ package com.project.msy.facility.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -34,7 +35,7 @@ public class Room {
     private Integer squareMeters;
 
     @Column(name = "monthly_fee", precision = 10, scale = 2)
-    private Double monthlyFee;
+    private BigDecimal monthlyFee;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
