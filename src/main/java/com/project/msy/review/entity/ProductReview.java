@@ -1,34 +1,38 @@
-package com.project.msy.bookmark.entity;
+package com.project.msy.review.entity;
 
-import com.project.msy.facility.entity.Facility;
-import com.project.msy.user.entity.User;
+import com.project.msy.product.entity.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
 /**
- * 사용자 시설 찜(Bookmark) Entity
+ * 상품 사용자 후기 Entity
  */
 @Entity
-@Table(name = "facility_likes")
+@Table(name = "p_reviews")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Bookmark {
+public class ProductReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "facility_id", nullable = false)
-    private Facility facility;
+    @Column(name = "user_name", nullable = false, length = 100)
+    private String userName;
+
+    @Column(nullable = false)
+    private Integer rating;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

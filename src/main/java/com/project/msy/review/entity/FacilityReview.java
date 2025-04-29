@@ -1,40 +1,38 @@
-package com.project.msy.facility.entity;
+package com.project.msy.review.entity;
 
+import com.project.msy.facility.entity.Facility;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
 /**
- * 시설 객실 정보 Entity
+ * 시설 사용자 후기 Entity
  */
 @Entity
-@Table(name = "room")
+@Table(name = "f_reviews")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Room {
+public class FacilityReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "f_id", nullable = false)
+    @JoinColumn(name = "facility_id", nullable = false)
     private Facility facility;
 
-    @Column(name = "room_type", nullable = false, length = 100)
-    private String roomType;
+    @Column(name = "user_name", nullable = false, length = 100)
+    private String userName;
 
-    @Column(name = "room_options", length = 255)
-    private String roomOptions;
+    @Column(nullable = false)
+    private Integer rating;
 
-    @Column(name = "square_meters")
-    private Integer squareMeters;
-
-    @Column(name = "monthly_fee", precision = 10, scale = 2)
-    private Double monthlyFee;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
