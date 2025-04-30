@@ -1,6 +1,7 @@
 package com.project.msy.auth.controller;
 
 import com.project.msy.auth.dto.LoginRequest;
+import com.project.msy.auth.dto.LoginResponse;
 import com.project.msy.auth.dto.RegisterRequest;
 import com.project.msy.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +24,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        String token = authService.login(request);
-        return ResponseEntity.ok(Map.of("token", token));
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+        LoginResponse response = authService.login(request);
+        return ResponseEntity.ok(response);
     }
 }

@@ -1,6 +1,7 @@
 package com.project.msy.auth.service;
 
 import com.project.msy.auth.dto.LoginRequest;
+import com.project.msy.auth.dto.LoginResponse;
 import com.project.msy.auth.dto.RegisterRequest;
 import com.project.msy.config.JwtUtil;
 import com.project.msy.user.entity.Role;
@@ -39,7 +40,7 @@ public class AuthService {
         userRepository.save(user);
     }
 
-    public String login(LoginRequest request) {
+    public LoginResponse login(LoginRequest request) {
         User user = userRepository.findByUserId(request.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
 
@@ -47,6 +48,9 @@ public class AuthService {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
 
-        return jwtUtil.generateToken(user.getUserId(), user.getRole().name());
+        String token = jwtUtil.generateToken(user.getUserId(), user.getRole().name());
+        boolean isAdmin = user.getRole() == Role.ADMIN;  // Role이 enum이라면 ADMIN 값 확인
+
+        return new LoginResponse(token, isAdmin);
     }
 }

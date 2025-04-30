@@ -68,14 +68,23 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         // =========================
         // ✅ 4-A: JSON 응답 (Postman 테스트용)
         // =========================
+<<<<<<< HEAD
 //        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
 //        response.setContentType("application/json");
 //        response.getWriter().write("{\"token\":\"" + token + "\",\"isNewUser\":" + isNewUser + "}");
+=======
+
+//        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+//        response.setContentType("application/json");
+//        response.getWriter().write("{\"token\":\"" + token + "\"}");
+
+>>>>>>> feature/woo3
 
         // =========================
         // ✅ 4-B: Redirect 응답 (프론트 연동용)
         //  - 프론트에서 /login/oauth2/code/{provider} 라우트로 토큰과 신규가입 여부를 전달
         // =========================
+<<<<<<< HEAD
         String frontRedirectBase = "http://localhost:3000/login/oauth2/code/" + registrationId;
         UriComponentsBuilder uriBuilder = UriComponentsBuilder
                 .fromUriString(frontRedirectBase)
@@ -86,5 +95,11 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         String redirectUrl = uriBuilder.build().toUriString();
 
         response.sendRedirect(redirectUrl);
+=======
+         String frontBaseUrl = "http://localhost:3000/login/oauth2/code/" + provider;
+         String redirectUrl = frontBaseUrl
+             + "?token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
+         response.sendRedirect(redirectUrl);
+>>>>>>> feature/woo3
     }
 }

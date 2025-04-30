@@ -1,11 +1,10 @@
 package com.project.msy.user.controller;
 
+import com.project.msy.auth.dto.RegisterRequest;
 import com.project.msy.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -18,5 +17,11 @@ public class UserController {
     @GetMapping("/check-userid")
     public boolean checkUserId(@RequestParam String userId) {
         return userService.isUserIdDuplicate(userId);
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody RegisterRequest request) {
+        userService.signup(request);
+        return ResponseEntity.ok("회원가입 성공");
     }
 }
